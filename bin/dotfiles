@@ -6,7 +6,8 @@ use warnings;
 use Path::Class qw/file dir/;
 use File::Copy qw/move cp/;
 
-my $machine = $ARGV[0];
+my $machine = $ARGV[0]
+    or die "Must specify one of: home / work_desktop / work_dev_box";
 
 my $home_dir         = dir( $ENV{HOME} );
 my $dotfiles_dir     = $home_dir->subdir('git/dot-files');
@@ -18,9 +19,7 @@ my $backup_dir       = dir('/tmp/dot-files-backup');
 # create links in $home_dir to $links_dir
 create_links( $links_dir => $home_dir );
 
-if ($machine) {
-    create_links( $custom_links_dir->subdir($machine) => $home_dir );
-}
+create_links( $custom_links_dir->subdir($machine) => $home_dir );
 
 # copy files from $copy_dir to $home_dir
 copy_files( $copy_dir => $home_dir );
@@ -96,9 +95,7 @@ sub create_custom_links {
         next if $file->basename =~ /^\.\.$/;                 # parent
         next if $file->basename =~ /^\.git$/;
 
-	# only works 1 level deep atm
-
-	
+        # only works 1 level deep atm
 
         my $link = $home_dir->file( $file->basename );
         next if -l $link;
@@ -110,7 +107,6 @@ sub create_custom_links {
         `$ln`;
     }
 }
-
 
 # copy files from $copy_dir to $home_dir
 sub copy_files {
