@@ -85,6 +85,8 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias e="emacs -nw"
+#alias ack="ack-grep"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -106,16 +108,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-alias e="emacs -nw"
-alias sshmj="ssh mjemmeson@ec2-54-242-208-227.compute-1.amazonaws.com"
-alias ack="ack-grep"
-
-source ~/perl5/perlbrew/etc/bashrc
-eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
-
-source ~/.bash/prompt.sh
-
-if [ -f $HOME/perl5/perlbrew/etc/bashrc ]; then
-  source $HOME/perl5/perlbrew/etc/bashrc;
+if [ -f ~/.bash2/work_desktop.sh ]; then
+    . ~/.bash2/work_desktop.sh
+elif [ -f ~/.bash2/work_dev_box.sh ]; then
+    . ~/.bash2/work_dev_box.sh
+elif [ -f ~/.bash2/home.sh ]; then
+    . ~/.bash2/home.sh
 fi
 

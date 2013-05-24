@@ -6,14 +6,21 @@ use warnings;
 use Path::Class qw/file dir/;
 use File::Copy qw/move cp/;
 
-my $home_dir     = dir( $ENV{HOME} );
-my $dotfiles_dir = $home_dir->subdir('git/dot-files');
-my $links_dir    = $dotfiles_dir->subdir('links');
-my $copy_dir     = $dotfiles_dir->subdir('copy');
-my $backup_dir   = dir('/tmp/dot-files-backup');
+my $machine = $ARGV[0];
+
+my $home_dir         = dir( $ENV{HOME} );
+my $dotfiles_dir     = $home_dir->subdir('git/dot-files');
+my $links_dir        = $dotfiles_dir->subdir('links');
+my $custom_links_dir = $dotfiles_dir->subdir('custom_links');
+my $copy_dir         = $dotfiles_dir->subdir('copy');
+my $backup_dir       = dir('/tmp/dot-files-backup');
 
 # create links in $home_dir to $links_dir
 create_links( $links_dir => $home_dir );
+
+if ($machine) {
+    create_links( $custom_links_dir->subdir($machine) => $home_dir );
+}
 
 # copy files from $copy_dir to $home_dir
 copy_files( $copy_dir => $home_dir );
@@ -78,6 +85,32 @@ sub create_links {
         `$ln`;
     }
 }
+
+sub create_custom_links {
+    my ( $links_dir, $home_dir, $machine ) = @_;
+
+    die "no machine" unless $machine;
+
+    while ( my $file = $links_dir->next ) {
+        next if $file->stringify eq $links_dir->stringify;
+        next if $file->basename =~ /^\.\.$/;                 # parent
+        next if $file->basename =~ /^\.git$/;
+
+	# only works 1 level deep atm
+
+	
+
+        my $link = $home_dir->file( $file->basename );
+        next if -l $link;
+
+        backup($link) || next;
+
+        my $ln = "ln -s '$file' '$link'";
+        print $ln, "\n";
+        `$ln`;
+    }
+}
+
 
 # copy files from $copy_dir to $home_dir
 sub copy_files {
