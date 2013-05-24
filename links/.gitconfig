@@ -1,0 +1,14 @@
+[user]
+	name = Michael Jemmeson
+	email = michael.jemmeson@cpan.org
+[url "https://"]
+	insteadOf = git://
+[color]
+	diff = auto
+	ui = true
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+	di = diff
+	br = branch
