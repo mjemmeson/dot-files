@@ -108,11 +108,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-if [ -f ~/.bash2/work_desktop.sh ]; then
-    . ~/.bash2/work_desktop.sh
-elif [ -f ~/.bash2/work_dev_box.sh ]; then
-    . ~/.bash2/work_dev_box.sh
-elif [ -f ~/.bash2/home.sh ]; then
-    . ~/.bash2/home.sh
+if [ -f ~/.bash_work_desktop.sh ]; then
+    . ~/.bash_work_desktop.sh
+elif [ -f ~/.bash_work_dev_box.sh ]; then
+    . ~/.bash_work_dev_box.sh
+elif [ -f ~/.bash_home.sh ]; then
+    . ~/.bash_home.sh
 fi
 
