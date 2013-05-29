@@ -12,3 +12,4 @@
 	st = status
 	di = diff
 	br = branch
+	mrg = merge
