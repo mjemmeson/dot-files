@@ -1,0 +1,3 @@
+# Make Control+z escape combination
+escape ^Zz
+

@@ -8,13 +8,15 @@ export MYSQL_PS1="\u@\h:\d % "
 # User specific aliases and functions
 alias update_aliases='print_db_aliases > ~/.db_aliases 2>/dev/null; source ~/.db_aliases; print_ssh_aliases > ~/.ssh_aliases 2>/dev/null; source ~/.ssh_aliases'
 
-update_aliases
-. ~/.db_aliases
-. ~/.ssh_aliases
+#update_aliases
+source ~/.db_aliases
+source ~/.ssh_aliases
 
 export PATH="$EC2_HOME/bin:/opt/platform/bin/systems:$PATH"
 
 alias grok='find . -type f \( -regex ".*\.\(html\|config\|pm\|\pl\)" -o -regex ".*/[^/.]*$" \) -a \( -not -regex ".*CVS.*" \)  -a \( -not -regex ".*~.*" \) -a \( -not -regex ".*/tmp/.*" \) -print0 | xargs -0 grep '
+
+alias svn_exec='svn propset svn:executable ON'
 
 #
 # Tab-completion of SVN paths.
@@ -53,4 +55,11 @@ _svn()
 }
 
 complete -F _svn -o default -o nospace svn
+
+# MySQL - dump data into CSV
+function mysql2csv() {
+    "$@" | sed 's/\t/","/g;s/^/"/;s/$/"/;s/\n//g'
+}
+
+alias appscreen="bin/dev/launch_cluster_screen -group_name app -username app -keypair ~/.ssh/id_rsa-app A.www.uk"
 

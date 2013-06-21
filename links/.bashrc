@@ -114,10 +114,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 if [ -f ~/.bash_work_desktop.sh ]; then
-    . ~/.bash_work_desktop.sh
+    source ~/.bash_work_desktop.sh
 elif [ -f ~/.bash_work_dev_box.sh ]; then
-    . ~/.bash_work_dev_box.sh
+    source ~/.bash_work_dev_box.sh
 elif [ -f ~/.bash_home.sh ]; then
-    . ~/.bash_home.sh
+    source ~/.bash_home.sh
 fi
+
+source ~/.ssh_aliases_more
 
