@@ -96,7 +96,17 @@
 
 (show-paren-mode 1)
 (custom-set-faces
-;;'(show-paren-match ((t (:foreground "blue" :bold))))
-'(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold)))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold)))))
 
 
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(undo-limit 800000)
+ '(undo-strong-limit 1200000))

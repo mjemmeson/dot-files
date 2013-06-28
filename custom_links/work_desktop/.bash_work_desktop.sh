@@ -2,9 +2,14 @@
 
 alias sshmj="ssh mjemmeson@ec2-54-242-208-227.compute-1.amazonaws.com"
 
-scpmj()
+scpup()
 {
     scp "$1" mjemmeson@ec2-54-242-208-227.compute-1.amazonaws.com:
+}
+
+scpdown()
+{
+    scp mjemmeson@ec2-54-242-208-227.compute-1.amazonaws.com:"$1" .
 }
 
 #eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
