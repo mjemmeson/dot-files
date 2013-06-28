@@ -8,7 +8,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode 1)
 (which-func-mode)
-;;(defalias 'perl-mode 'cperl-mode)
+(defalias 'perl-mode 'cperl-mode)
 
 ;; enable visual feedback on selections
 (setq transient-mark-mode t)
@@ -20,7 +20,7 @@
 (setq default-indicate-empty-lines t)
 
 ;; enable this to get rid of those silly underscores
-(setq cperl-invalid-face nil)
+;;(setq cperl-invalid-face nil)
 
 (fset 'BP
       "#!/usr/bin/perl\n\nuse strict;\nuse warnings;\n"
@@ -47,6 +47,7 @@
 ;; (require 'un-define)
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
+(add-to-list 'load-path "~/share/emacs/site-lisp")
 
 
 ;; BACKUP FILES
@@ -71,6 +72,7 @@
 (setq tab-width 4)
 (setq indent-tabs-mode nil) 
 
+
 ;; PERLTIDY
 ;;(require 'perltidy)
 
@@ -86,17 +88,55 @@
 
 ;; MODES
 
-;; Perl mode
-(setq auto-mode-alist (cons '("\\.t$" . perl-mode) auto-mode-alist))
+;; MMM Mode
+(require 'mmm-auto)
+(setq mmm-global-mode 'maybe)
+(add-to-list 'auto-mode-alist '("/opt/projects/mj4/platform/site" . sgml-mode))
+(mmm-add-mode-ext-class 'sgml-mode "/opt/projects/mj4/platform/site" 'mason)
 
-(eval-after-load "perl-mode"
-   '(define-key perl-mode-map "\C-c\C-c"  'comment-region))
-(eval-after-load "perl-mode"
-   '(define-key perl-mode-map "\C-u\C-c"  'uncomment-region))
+;; Perl mode
+(setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
+
+(eval-after-load "cperl-mode"
+   '(define-key cperl-mode-map "\C-c\C-c"  'comment-region))
+(eval-after-load "cperl-mode"
+   '(define-key cperl-mode-map "\C-u\C-c"  'uncomment-region))
 
 (show-paren-mode 1)
 (custom-set-faces
-;;'(show-paren-match ((t (:foreground "blue" :bold))))
-'(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold)))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(cperl-array-face ((((class color) (background light)) (:foreground "Yellow"))))
+ '(cperl-hash-face ((((class color) (background light)) (:foreground "Yellow"))))
+ '(mmm-default-submode-face ((((background light)) (:background "gray20"))))
+ '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold)))))
+
+;; CPERL-MODE
+
+(setq cperl-indent-level 4)
+
+(defface cperl-background-highlight-face
+      '((((class color))
+         ;; define your tastes (background, foreground)
+         (
+          :background "grey98" 
+;         :underline "grey"
+          )
+         ))
+      "My face for highlighting backgrounds in cperl-mode"
+      :group 'cperl-mode)
+
+(set-default 'cperl-invalid-face 'cperl-background-highlight-face)
+
+(setq cperl-highlight-variables-indiscriminately t)
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
 
 
