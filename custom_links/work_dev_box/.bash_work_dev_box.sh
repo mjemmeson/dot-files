@@ -56,10 +56,5 @@ _svn()
 
 complete -F _svn -o default -o nospace svn
 
-# MySQL - dump data into CSV
-function mysql2csv() {
-    "$@" | sed 's/\t/","/g;s/^/"/;s/$/"/;s/\n//g'
-}
-
 alias appscreen="bin/dev/launch_cluster_screen -group_name app -username app -keypair ~/.ssh/id_rsa-app A.www.uk"
 

@@ -123,3 +123,9 @@ fi
 
 source ~/.ssh_aliases_more
 
+alias mysql2csv="sed 's/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g'"
+
+# MySQL - dump data into CSV (can use if no alias for db)
+#function mysql2csv() {
+#    "$@" | sed 's/\t/","/g;s/^/"/;s/$/"/;s/\n//g'
+#}
