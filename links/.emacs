@@ -46,7 +46,7 @@
 ;;; uncomment for CJK utf-8 support for non-Asian users
 ;; (require 'un-define)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
+(add-to-list 'load-path "~/.emacs.d-site-lisp")
 (add-to-list 'load-path "~/share/emacs/site-lisp")
 
 
@@ -139,4 +139,14 @@
   ;; If there is more than one, they won't work right.
  '(undo-limit 800000)
  '(undo-strong-limit 1200000))
+
+
+;; PHP mode
+(require 'php-mode)
+(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
+
+
+;; HIGHLIGHT CHARS
+(require 'highlight-chars)
+(add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
 
