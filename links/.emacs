@@ -46,7 +46,7 @@
 ;;; uncomment for CJK utf-8 support for non-Asian users
 ;; (require 'un-define)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
+(add-to-list 'load-path "~/.emacs.d-site-lisp")
 (add-to-list 'load-path "~/share/emacs/site-lisp")
 
 
@@ -108,9 +108,9 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold)))) '(cperl-array-face ((((class color) (background light)) (:foreground "Yellow"))))
+ '(cperl-array-face ((((class color) (background light)) (:foreground "Yellow"))))
  '(cperl-hash-face ((((class color) (background light)) (:foreground "Yellow"))))
-;; '(mmm-default-submode-face ((((background light)) (:background "gray20"))))
+ '(mmm-default-submode-face ((((background light)) (:background "gray40"))))
  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold)))))
 
 ;; CPERL-MODE
@@ -138,6 +138,15 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(undo-limit 800000)
- '(undo-strong-limit 1200000)
- )
+ '(undo-strong-limit 1200000))
+
+
+;; PHP mode
+(require 'php-mode)
+(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
+
+
+;; HIGHLIGHT CHARS
+(require 'highlight-chars)
+(add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
 

@@ -48,7 +48,6 @@ sub process_submodules {
             ? create_links( $bin_dir => $home_bin_dir, 1 )
             : create_links( $dir     => $home_bin_dir, 1 );
     }
-
 }
 
 sub remove_dead_links {
