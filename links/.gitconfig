@@ -1,5 +1,9 @@
-[include]
-	path = /home/michael/.gitconfig-local
+[user]
+	name = Michael Jemmeson
+	email = mjemmeson@cpan.org
+[ph]
+	user = mjemmeson
+	token = <TOKEN>
 [url "https://"]
 	insteadOf = git://
 [color]
