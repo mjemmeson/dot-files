@@ -1,6 +1,3 @@
-[user]
-	name = Michael Jemmeson
-	email = mjemmeson@cpan.org
 [url "https://"]
 	insteadOf = git://
 [color]
@@ -13,6 +10,5 @@
 	di = diff
 	br = branch
 	mrg = merge
-[ph]
-	user = mjemmeson
-	token = <TOKEN>
+[include]
+	path = ~/.gitconfig-local
