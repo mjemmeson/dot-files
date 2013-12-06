@@ -146,6 +146,12 @@
 (setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
 
 
+;; TT-mode
+(autoload 'tt-mode "tt-mode")
+(setq auto-mode-alist
+ (append '(("\\.tt$" . tt-mode))  auto-mode-alist ))
+
+
 ;; HIGHLIGHT CHARS
 (require 'highlight-chars)
 (add-hook 'font-lock-mode-hook 'hc-highlight-tabs)

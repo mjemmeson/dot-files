@@ -13,3 +13,6 @@
 	di = diff
 	br = branch
 	mrg = merge
+[ph]
+	user = mjemmeson
+	token = <TOKEN>
