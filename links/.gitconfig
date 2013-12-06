@@ -1,3 +1,5 @@
+[include]
+	path = /home/michael/.gitconfig-local
 [url "https://"]
 	insteadOf = git://
 [color]
@@ -10,5 +12,3 @@
 	di = diff
 	br = branch
 	mrg = merge
-[include]
-	path = ~/.gitconfig-local
