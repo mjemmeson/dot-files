@@ -46,7 +46,7 @@
 ;;; uncomment for CJK utf-8 support for non-Asian users
 ;; (require 'un-define)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
+(add-to-list 'load-path "~/.emacs.d-site-lisp")
 (add-to-list 'load-path "~/share/emacs/site-lisp")
 
 
@@ -90,10 +90,10 @@
 ;; MODES
 
 ;; MMM Mode
-(require 'mmm-auto)
-(setq mmm-global-mode 'maybe)
-(add-to-list 'auto-mode-alist '("/opt/projects/mj4/platform/site" . sgml-mode))
-(mmm-add-mode-ext-class 'sgml-mode "/opt/projects/mj4/platform/site" 'mason)
+;;(require 'mmm-auto)
+;;(setq mmm-global-mode 'maybe)
+;;(add-to-list 'auto-mode-alist '("/opt/projects/mj4/platform/site" . sgml-mode))
+;;(mmm-add-mode-ext-class 'sgml-mode "/opt/projects/mj4/platform/site" 'mason)
 
 ;; Perl mode
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
@@ -141,7 +141,6 @@
  '(undo-limit 800000)
  '(undo-strong-limit 1200000))
 
-(add-to-list 'load-path "~/.emacs.d/")
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -158,4 +157,19 @@
     ac-source-dictionary
     ac-source-words-in-same-mode-buffers
 ))
+
+;; PHP mode
+(require 'php-mode)
+(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
+
+
+;; TT-mode
+(autoload 'tt-mode "tt-mode")
+(setq auto-mode-alist
+ (append '(("\\.tt$" . tt-mode))  auto-mode-alist ))
+
+
+;; HIGHLIGHT CHARS
+(require 'highlight-chars)
+(add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
 
