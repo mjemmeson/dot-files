@@ -51,14 +51,12 @@
 
 ;; PERL
 (defalias 'perl-mode 'cperl-mode)
-;;(setq cperl-invalid-face nil)   ;; enable this to get rid of those silly underscores
-
+(require 'perl-find-library)
 (fset 'BP
       "#!/usr/bin/perl\n\nuse strict;\nuse warnings;\n"
         )
 ;; M-x BP now inserts boiler plate
 
-;; CPERL-MODE
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
 
 (eval-after-load "cperl-mode"
@@ -68,24 +66,7 @@
 
 (setq cperl-indent-level 4)
 
-(defface cperl-background-highlight-face
-      '((((class color))
-         ;; define your tastes (background, foreground)
-         (
-          :background "grey98" 
-;         :underline "grey"
-          )
-         ))
-      "My face for highlighting backgrounds in cperl-mode"
-      :group 'cperl-mode)
-
-(set-default 'cperl-invalid-face 'cperl-background-highlight-face)
-
-(setq cperl-highlight-variables-indiscriminately t)
-
 ;; PERLTIDY
-;;(require 'perltidy)
-
 (defun perltidy ()
     "Run perltidy on the current region or buffer."
     (interactive)
@@ -124,9 +105,7 @@
 ;; AUTO-COMPLETE
 (require 'auto-complete-config)
 (ac-config-default)
-
 (require 'popup)
-
 (setq-default ac-sources '(
     ac-source-words-in-buffer
 ;;    ac-source-features
@@ -140,16 +119,34 @@
 ))
 
 
-;; FONT / HIGHLIGHTING (from customize)
+;; FONT / HIGHLIGHTING
+
+; perl
+(setq cperl-highlight-variables-indiscriminately t)
+
+(defface cperl-background-highlight-face
+      '((((class color))
+         (:background "orange")
+         ))
+      "My face for highlighting backgrounds in cperl-mode"
+      :group 'cperl-mode)
+(set-default 'cperl-invalid-face 'cperl-background-highlight-face) ;; trailing spaces
+
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(cperl-array-face ((((class color) (background light)) (:foreground "Yellow"))))
- '(cperl-hash-face ((((class color) (background light)) (:foreground "Yellow"))))
- '(mmm-default-submode-face ((((background light)) (:background "gray40"))))
- '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold)))))
+
+  ; general
+  '(mmm-default-submode-face ((((background light)) (:background "gray40"))))
+  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white" :bold))))
+  ; perl
+  '(cperl-array-face ((((class color) (background light)) (:foreground "Yellow"))))
+  '(cperl-hash-face  ((((class color) (background light)) (:foreground "Yellow"))))
+
+)
 
 ;; OTHER VARIABLES (from customize)
 (custom-set-variables

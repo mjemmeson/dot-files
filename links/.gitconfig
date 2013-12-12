@@ -16,3 +16,5 @@
 	di = diff
 	br = branch
 	mrg = merge
+[push]
+	default = simple
