@@ -71,6 +71,7 @@
 (setq c-basic-offset 4)
 (setq tab-width 4)
 (setq indent-tabs-mode nil) 
+(setq-default indent-tabs-mode nil) 
 
 
 ;; PERLTIDY
@@ -139,4 +140,22 @@
   ;; If there is more than one, they won't work right.
  '(undo-limit 800000)
  '(undo-strong-limit 1200000))
+
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'auto-complete-config)
+(ac-config-default)
+
+(require 'popup)
+
+(setq-default ac-sources '(
+    ac-source-words-in-buffer
+ ;;   ac-source-features
+ ;;   ac-source-functions
+;;    ac-source-yasnippet
+;;    ac-source-variables
+;;    ac-source-symbols
+    ac-source-abbrev
+    ac-source-dictionary
+    ac-source-words-in-same-mode-buffers
+))
 

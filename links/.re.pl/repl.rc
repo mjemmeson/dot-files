@@ -1,0 +1,6 @@
+use feature 'say';
+use Data::Dumper::Concise;
+use Module::Refresh;
+
+sub refresh { Module::Refresh->refresh() }
+
