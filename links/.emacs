@@ -24,6 +24,10 @@
    kept-old-versions 2
    version-control t)       ; use versioned backups
 
+;; COLUMN MARKER
+(require 'column-marker)
+(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
+
 ;; LINE NUMBERS
 (require 'linum)                         ;; line numbers in left margin
 (global-linum-mode t)

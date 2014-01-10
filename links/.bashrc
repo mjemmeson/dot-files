@@ -121,9 +121,23 @@ elif [ -f ~/.bash_home.sh ]; then
     source ~/.bash_home.sh
 fi
 
-source ~/.ssh_aliases_more
-
 #alias mysql2csv="sed 's/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g'"
 alias mysql2csv='sed '\''s/\t/","/g;s/^/"/;s/$/"/;s/\n//g'\'''
+
+# Perl aliases
+alias pb="perlbrew"
+alias pbl="perlbrew list |grep \@"
+pu() {
+  local perl=$1
+  local plib=$2
+  if [ "$perl" ]; then
+    if [ -z "$plib" ]; then
+        plib="BB";
+    fi
+    perlbrew use $perl@$plib
+  fi
+  local current=$(perlbrew list | grep \* | sed -e 's/\* //' )
+  echo "Current perl is $current"
+}
 
 

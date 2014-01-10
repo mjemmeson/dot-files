@@ -10,3 +10,11 @@ NBowers style review of anti-spam modules
 
 
 
+check if module to generate config file on first run - with prompting
+
+
+pull request for Dist Zilla Plugin Test Fixme to allow options
+
+mock network request/response for Tests
+
+
