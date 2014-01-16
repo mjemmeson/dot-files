@@ -101,6 +101,13 @@
  (append '(("\\.tt$" . tt-mode))  auto-mode-alist ))
 
 
+;; MARKDOWN
+     (autoload 'markdown-mode "markdown-mode"
+        "Major mode for editing Markdown files" t)
+     (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
 ;; HIGHLIGHT CHARS
 (require 'highlight-chars)
 (add-hook 'font-lock-mode-hook 'hc-highlight-tabs)

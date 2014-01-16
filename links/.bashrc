@@ -140,4 +140,13 @@ pu() {
   echo "Current perl is $current"
 }
 
+pme() {
+  local pm=$1
+  if [ "$pm" ]; then
+    local view="emacs -nw `mpath $pm`"
+    $view
+  fi
+}
+
+
 
