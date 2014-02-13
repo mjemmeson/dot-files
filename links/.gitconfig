@@ -16,5 +16,6 @@
 	di = diff
 	br = branch
 	mrg = merge
+	l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %Cgreen(%cr)%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [push]
 	default = simple
