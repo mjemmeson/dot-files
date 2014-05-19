@@ -16,13 +16,22 @@
 (add-to-list 'load-path "~/share/emacs/site-lisp")
 
 ;; BACKUP FILES
+(defvar --backup-directory "~/.emacs_backups")
+(if (not (file-exists-p --backup-directory))
+        (make-directory --backup-directory t))
+(setq backup-directory-alist `(("." . ,--backup-directory)))
 (setq
-   backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist (quote ((".*" . "~/.emacs_backups")))
+   make-backup-files t               ; backup of a file the first time it is saved.
+   backup-by-copying t               ; don't clobber symlinks
    delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
-   version-control t)       ; use versioned backups
+   delete-by-moving-to-trash t
+   kept-old-versions 6               ; oldest versions to keep when a new numbered backup is made (default: 2)
+   kept-new-versions 9               ; newest versions to keep when a new numbered backup is made (default: 2)
+   version-control t                 ; use versioned backups
+   auto-save-default t               ; auto-save every buffer that visits a file
+   auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
+   auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
+)
 
 ;; COLUMN MARKER
 (require 'column-marker)
@@ -108,11 +117,6 @@
      (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
-;; HIGHLIGHT CHARS
-(require 'highlight-chars)
-(add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
-
-
 ;; AUTO-COMPLETE
 (require 'auto-complete-config)
 (ac-config-default)
@@ -132,8 +136,21 @@
 
 ;; FONT / HIGHLIGHTING
 
+; highlight tabs and trailing space
+(require 'highlight-chars)
+(add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
+
 ; perl
 (setq cperl-highlight-variables-indiscriminately t)
+
+(require 'auto-highlight-symbol)
+(add-hook 'cperl-mode-hook 'auto-highlight-symbol-mode)
+(setq ahs-idle-interval 0.35)
+
+;(require 'highlight)
+;(setq hlt-auto-faces-flag 1)
+;(setq highlight-symbol-idle-delay 1)
+;(add-hook 'cperl-mode-hook 'highlight-symbol-mode)
 
 (defface cperl-background-highlight-face
       '((((class color))

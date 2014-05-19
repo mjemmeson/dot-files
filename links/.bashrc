@@ -13,8 +13,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=50000
-HISTFILESIZE=20000
+HISTSIZE=5000000
+HISTFILESIZE=2000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -26,6 +26,8 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+export LESS=FSRX
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -85,6 +87,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias lrt='ls -lrt'
 alias e="emacs -nw"
 #alias ack="ack-grep"
 
@@ -148,11 +151,28 @@ pme() {
   fi
 }
 
+alias puse="grep -hr '^use ' lib |sort|uniq| cut -d ' ' -f 2"
+
+
 # Git
 alias gl="git l1" # log
 
 
+# Colout
+function rainbow()
+{
+    colout "^.*$" rainbow
+}
+
+function c()
+{
+    set -o pipefail
+    $@ 2>&1  | rainbow
+}
+
 
 #export `gnome-keyring-daemon`
 
+# SERVERS
+alias chops="ssh michael@chops"
 

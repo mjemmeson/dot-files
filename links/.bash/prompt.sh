@@ -32,6 +32,8 @@ function __prompt
     local dirty
     local branch
 
+#printf '%s\n' "${PWD##*/}"
+
     # Look for Git status
     if git status &>/dev/null; then
         if git status -uno -s | grep -q . ; then
@@ -40,20 +42,20 @@ function __prompt
         branch=$(git branch --color=never | sed -ne 's/* //p')
 
     # Look for Subversion status
-    else
-        svn_info=$( (svn info | grep ^URL) 2>/dev/null )
-        if [[ ! -z "$svn_info" ]] ; then
-            branch_pattern="^URL: .*/(branch(es)?|tags)/([^/]+)"
-            trunk_pattern="^URL: .*/trunk(/.*)?$"
-            if [[ $svn_info =~ $branch_pattern ]]; then
-                branch=${BASH_REMATCH[3]}
-            elif [[ $svn_info =~ $trunk_pattern ]]; then
-                branch='trunk'
-            else
-                branch='SVN'
-            fi
-            dirty=$(svn status -q)
-        fi
+#    else
+#        svn_info=$( (svn info | grep ^URL) 2>/dev/null )
+#        if [[ ! -z "$svn_info" ]] ; then
+#            branch_pattern="^URL: .*/(branch(es)?|tags)/([^/]+)"
+#            trunk_pattern="^URL: .*/trunk(/.*)?$"
+#            if [[ $svn_info =~ $branch_pattern ]]; then
+#                branch=${BASH_REMATCH[3]}
+#            elif [[ $svn_info =~ $trunk_pattern ]]; then
+#                branch='trunk'
+#            else
+#                branch='SVN'
+#            fi
+#            dirty=$(svn status -q)
+#        fi
     fi
 
     if [[ ! -z "$branch" ]]; then
