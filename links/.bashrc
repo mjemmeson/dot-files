@@ -152,11 +152,11 @@ pme() {
 }
 
 alias puse="grep -hr '^use ' lib |sort|uniq| cut -d ' ' -f 2"
-
+alias puset='grep -hr '\''^use '\'' t |sort|uniq| cut -d '\'' '\'' -f 2'
 
 # Git
 alias gl="git l1" # log
-
+alias gb="git bl | sed 's/refs\/heads\///g'" # list branches
 
 # Colout
 function rainbow()

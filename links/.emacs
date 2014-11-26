@@ -10,6 +10,9 @@
 (setq frame-title-format                 ;; default to better frame titles
       (concat  "%b - emacs@" (system-name)))
 
+(global-set-key [(shift delete)] 'clipboard-kill-region)
+(global-set-key [(control insert)] 'clipboard-kill-ring-save)
+(global-set-key [(shift insert)] 'clipboard-yank)
 
 ;; PATHS
 (add-to-list 'load-path "~/.emacs.d-site-lisp")
@@ -20,6 +23,9 @@
 (if (not (file-exists-p --backup-directory))
         (make-directory --backup-directory t))
 (setq backup-directory-alist `(("." . ,--backup-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 (setq
    make-backup-files t               ; backup of a file the first time it is saved.
    backup-by-copying t               ; don't clobber symlinks
