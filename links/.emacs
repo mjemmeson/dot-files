@@ -50,10 +50,13 @@
 (column-number-mode 1)                   ;; 
 
 ;; TABS/SPACES
-(setq c-basic-offset 4)
 (setq tab-width 4)
+(setq-default tab-width 4)
+(setq c-basic-offset 4)
 (setq indent-tabs-mode nil) 
 (setq-default indent-tabs-mode nil) 
+
+(setq nxml-child-indent 4)
 
 ;; TEXT EDITING
 (setq transient-mark-mode t)             ;; enable visual feedback on selections
@@ -77,6 +80,7 @@
 ;; M-x BP now inserts boiler plate
 
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.cgi$" . cperl-mode) auto-mode-alist))
 
 (eval-after-load "cperl-mode"
    '(define-key cperl-mode-map "\C-c\C-c"  'comment-region))

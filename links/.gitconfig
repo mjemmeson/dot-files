@@ -16,8 +16,10 @@
 	di = diff
 	br = branch
 	mrg = merge
-        l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %Cgreen(%cr)%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-        bl = for-each-ref --sort=-committerdate refs/heads/ --format='%(color:red)%(refname)%(color:reset) %(color:green)%(committerdate)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) - %(contents:subject)'
+	l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %Cgreen(%cr)%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	bl = for-each-ref --sort=-committerdate refs/heads/ --format='%(color:red)%(refname)%(color:reset) %(color:green)%(committerdate)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset)'
+
+# - %(contents:subject)'
 
 [push]
 	default = simple
